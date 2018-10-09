@@ -1,6 +1,5 @@
 package com.company.crud;
 
-import javax.naming.Name;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,11 +8,11 @@ import java.util.Scanner;
 
 public class FileCRUD {
 
+    private String fileName;
+
     public void createFile() {
-        System.out.println ( "ivesk failo pavadinima" );
+
         Scanner sc = new Scanner ( System.in );
-        String fileName = sc.nextLine ();
-        System.out.println ( "Ivestas failo pavadinimas: " + fileName + "\u263A" );
 
         File file = new File ( fileName );
         if (file.exists ())
@@ -37,11 +36,8 @@ public class FileCRUD {
     }
 
     public void updateFile() {
-        System.out.println ( "Iveskite failo pavadinima" );
         Scanner sc = new Scanner ( System.in );
-        String failoVardas = sc.nextLine ();
-        String pathname;
-        File file = new File ( failoVardas );
+        File file = new File ( fileName );
 
         if (file.exists ()) {
             System.out.println ( "Toks failas yra" );
@@ -58,7 +54,7 @@ public class FileCRUD {
                         writer.write ( eilute + "\n" );
                     }
 
-                }while (!eilute.toLowerCase ().equals ( "pabaiga" )) ;
+                } while (!eilute.toLowerCase ().equals ( "pabaiga" ));
                 writer.close ();
 
             } catch (IOException e) {
@@ -68,43 +64,44 @@ public class FileCRUD {
 
     }
 
-    public void readFile(){
-        System.out.println ("Iveskite failo pavadinima");
-        Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
-        String pathname;
-        File file = new File(fileName);
+    public void readFile() {
 
-        if(file.exists ()){
+        File file = new File ( fileName );
+
+        if (file.exists ()) {
 
             try {
-                Scanner fileScanner = new Scanner(file);
-                while (fileScanner.hasNext ()){
-                    System.out.println (fileScanner.nextLine());
+                Scanner fileScanner = new Scanner ( file );
+                while (fileScanner.hasNext ()) {
+                    System.out.println ( fileScanner.nextLine () );
                 }
-                fileScanner.close();
-            } catch(FileNotFoundException e){
+                fileScanner.close ();
+            } catch (FileNotFoundException e) {
                 e.printStackTrace ();
             }
-
 
 
         }
     }
 
-    public void deleteFile () {
-        System.out.println ("Iveskite failo pavadinima trinimui");
-        Scanner sc = new Scanner ( System.in);
-        String fileNmae = sc.nextLine();
-        File file = new File(fileNmae);
-        if(file.exists()){
-            System.out.println ("toks failas yra, ar tikrai norite trinti? y/n");
-            String pasirinkimas = sc.nextLine();
-            if (pasirinkimas.toLowerCase ().equals ( "y" )){
-               file.delete ();
-                System.out.println ("Failas sekmingai istirntas");
+    public void deleteFile() {
+        Scanner sc = new Scanner ( System.in );
+        File file = new File ( fileName );
+        if (file.exists ()) {
+            System.out.println ( "toks failas yra, ar tikrai norite trinti? y/n" );
+            String pasirinkimas = sc.nextLine ();
+            if (pasirinkimas.toLowerCase ().equals ( "y" )) {
+                file.delete ();
+                System.out.println ( "Failas sekmingai istirntas" );
             }
         }
+    }
+
+    public void requestFileName() {
+        System.out.println ( "Iveskite failo pavadinima" );
+        Scanner sc = new Scanner ( System.in );
+        fileName = sc.nextLine();
+
     }
 }
 
