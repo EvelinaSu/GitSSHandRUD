@@ -91,6 +91,21 @@ public class FileCRUD {
 
         }
     }
+
+    public void deleteFile () {
+        System.out.println ("Iveskite failo pavadinima trinimui");
+        Scanner sc = new Scanner ( System.in);
+        String fileNmae = sc.nextLine();
+        File file = new File(fileNmae);
+        if(file.exists()){
+            System.out.println ("toks failas yra, ar tikrai norite trinti? y/n");
+            String pasirinkimas = sc.nextLine();
+            if (pasirinkimas.toLowerCase ().equals ( "y" )){
+               file.delete ();
+                System.out.println ("Failas sekmingai istirntas");
+            }
+        }
+    }
 }
 
 
