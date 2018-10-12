@@ -1,50 +1,20 @@
 package com.company;
 
-import com.company.crud.FileCRUD;
+import com.company.control.ProjectController;
+import com.company.model.FileCRUD;
+import com.company.view.CommandLineUI;
 
-import java.util.Scanner;
 
 public class MainFacade {
 
     public static void main(String[] args) {
         FileCRUD model = new FileCRUD ();
-        Scanner sc = new Scanner ( System.in );
-        boolean arTesti = true;
-        while (arTesti) {
-            showMenu ();
-            int pasirinikimas = sc.nextInt ();
-            switch (pasirinikimas) {
-                case 0:
-                    arTesti = false;
-                    break;
-                case 1:
-                    model.requestFileName();
-                    break;
-                case 2:
-                    model.createFile ();
-                    break;
-                case 3:
-                    model.updateFile ();
-                    break;
-                case 4:
-                    model.readFile ();
-                    break;
-                case 5:
-                    model.deleteFile ();
-                    break;
-            }
-        }
-    }
+        CommandLineUI view = new CommandLineUI ();
+        ProjectController controller = new ProjectController ( view, model );
+        controller.dirbam ();
 
-    static void showMenu() {
-        System.out.println ( "iveskite pasirinkima" );
-        System.out.println ( "1 - nurodyti failo varda" );
-        System.out.println ( "2 - sukurti faila" );
-        System.out.println ( "3 - papildyti faila tekstu" );
-        System.out.println ( "4 - parodyti failo turini" );
-        System.out.println ( "5 - trinti faila" );
-        System.out.println ( "0 - baigti darba" );
 
     }
+
 
 }
