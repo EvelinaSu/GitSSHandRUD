@@ -1,4 +1,4 @@
-package com.company.crud;
+package com.company.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
